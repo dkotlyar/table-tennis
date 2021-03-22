@@ -1,0 +1,72 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta http-equiv="Cache-Control" content="no-cache" />
+	<meta http-equiv="Cache-Control" content="max-age=0, must-revalidate" />
+	<meta http-equiv="Expires" content="{% now 'r' %}" />
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+
+	<link rel="stylesheet/less" type="text/css" href="{% static 'web/less/style.less' %}" />
+	<link rel="stylesheet/less" type="text/css" href="{% static 'web/less/jquery-ui.less' %}" />
+	<script src="{% static 'web/js/less.js' %}" type="text/javascript"></script>
+	
+	<link rel="stylesheet" type="text/css" href="{% static 'web/css/nice-select.css' %}" />
+	
+	<title>{% block title %}Тренажёр{% endblock %}</title>
+</head>
+
+<body class="{% block bodyclass %}{% endblock %}">
+	<div class="sidebar-menu-control">
+		<a href="javascript:open_menu();" class="open-menu-button"></a>
+		<a href="javascript:close_menu();" class="close-menu-button"></a>
+	</div>
+	
+	<div id="header">
+		{% block header %}Тренажёр{% endblock %}
+	</div>
+	
+	<div id="sidebar">
+		{% block sidebar %}
+		<ul>
+			{% block sidebar-menu %}
+			<li><a class="sidebar-button__home" href="{% url 'web:index' %}">Главная</a></li>
+			{# <li><a class="sidebar-button__profile" href="{% url 'accounts:profile' %}">Профиль</a></li> #}
+			{# <li><a class="sidebar-button__sportsmen" href="/sportsmens/">Спортсмены</a></li> #}
+			<li><a class="sidebar-button__training" href="{% url 'web:trainings' %}">Тренировки</a></li>
+			{# <li><a class="sidebar-button__shot" href="{% url 'web:shots' %}">Удары</a></li> #}
+			<li><a class="sidebar-button__gamepad" href="{% url 'web:positions' %}">Ручное управление</a></li>
+			{% endblock %}
+			<li><a class="sidebar-button__poweroff" href="{% url 'web:poweroff' %}">Выключить тренажёр</a></li>
+		</ul>
+		{% endblock %}
+	</div>
+	
+	<div id="content">
+		<div>{% block content %}{% endblock %}</div>
+	</div>
+		
+	<div id="overpage">
+		<div>{% block overpage %}{% endblock %}</div>
+	</div>
+	
+	<footer>
+		<script>
+			var API_URL = "/api/";
+			var STATIC_URL = "/static/"	
+		</script>
+		<script type="text/javascript" src="{% static 'web/js/jquery.js' %}"></script>
+		<script type="text/javascript" src="{% static 'web/js/jquery-ui.min.js' %}"></script>
+		<script type="text/javascript" src="{% static 'web/js/jquery.ui.touch-punch.min.js' %}"></script>
+		<script type="text/javascript" src="{% static 'web/js/jquery.form.js' %}"></script>
+		<script type="text/javascript" src="{% static 'web/js/jquery.nice-select.js' %}"></script>
+		<script type="text/javascript" src="{% static 'web/js/swig.min.js' %}"></script>
+		{% block footer %}{% endblock %}
+		<script type="text/javascript" src="{% static 'web/js/base.js' %}"></script>
+	</footer>
+	{% block float-button %}{% endblock %}
+
+</body>
+</html>

@@ -1,0 +1,16 @@
+{% extends 'web/base.html' %}
+
+{% block content %}
+	
+	<div class="content-wrap-padding">
+		<form action="{% url 'web:shot-add' training_id %}" method="POST">
+			{% csrf_token %}
+			
+			{{ form.as_p }}
+			
+			<p>
+				<button>Добавить</button>
+			</p>
+		</form>
+	</div>
+{% endblock %}

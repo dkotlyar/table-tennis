@@ -1,0 +1,38 @@
+{% extends 'web/base.html' %}
+{% load staticfiles %}
+
+{% block title %}{{ training.name }}{% endblock %}
+{% block header %}Запуск программы тренировки{% endblock %}
+
+{% block footer %}
+	{{ block.super }}
+	<script type="text/javascript" src="{% static 'web/js/jquery.form.js' %}"></script>
+	<script type="text/javascript" src="{% static 'web/js/jquery.nice-select.js' %}"></script>
+	
+	<script>
+		$(function(){
+			training_handle({{ training.pk }});
+		});
+	</script>
+{% endblock %}
+
+{% block content %}	
+	<div class="content-wrap-padding training-block">		
+		<div class="training-status">
+			<span>{{ training.get_state_display }}</span>
+		</div>
+		
+		<h3>{{ training.name }}</h4>
+		<p>
+			<label>Количество повторений: <strong>{{ training.repeat }}</strong></label>
+		</p>
+		<div class="training-shots">
+			{% for shot in training.shots %}
+				<div>
+					<input type="hidden" name="shot_id" value="{{ shot.pk }}" />
+					{% include 'web/shot_card.html' %}
+				</div>
+			{% endfor %}
+		</div>
+	</div>
+{% endblock %}

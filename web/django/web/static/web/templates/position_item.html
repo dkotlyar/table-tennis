@@ -1,0 +1,27 @@
+<div id="list-item-{{ forloop.counter }}" class="list-item-wrap">
+	<div class="list-item-swap"></div>
+	<div class="list-item">
+		<div class="list-item-title">
+			{% if position.matched == 'f' %}
+				<span class="warning" title="Не удалось произвести точный расчёт параметров выстрела">{{ position.name }}</span>
+			{% else %}
+				{{ position.name }} 
+			{% endif %}
+		</div>
+		<div class="list-item-subtitle-block">
+			<div>
+				<span class="list-item-subtitle">Задержка выстрела:</span> 
+				<span class="list-item-subtitle-colored">{{ position.before_delay|default('&mdash;') }} мс</span>
+			</div>
+			<div>
+				<span class="list-item-subtitle">Параметры:</span> 
+				<span class="list-item-subtitle-colored">{{ position.top_roll_speed }} об/мин</span>
+				<span class="list-item-subtitle-colored">{{ position.bottom_roll_speed }} об/мин</span>
+				высота: <span class="list-item-subtitle-colored">{{ position.lift }} мм</span>
+				поворот: <span class="list-item-subtitle-colored">{{ position.rotation }} °</span>
+				наклон: <span class="list-item-subtitle-colored">{{ position.incline }} °</span>
+				поворот рол.: <span class="list-item-subtitle-colored">{{ position.rollrotation }} °</span>
+			</div>
+		</div>
+	</div>
+</div>

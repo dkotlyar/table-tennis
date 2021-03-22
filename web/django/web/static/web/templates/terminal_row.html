@@ -1,0 +1,12 @@
+<tr>
+	<td data-timestamp="{{ msg.timestamp }}">{{ msg.timestamp|date('H:i:s') }}</td>
+	<td>
+		{% if  msg.direction == 'tx' %}
+			>>
+		{% else %}
+			<<
+		{% endif %}
+		{{ msg.hexcode }}
+	</td>
+	<td>{{ msg.description }}</td>
+</tr>

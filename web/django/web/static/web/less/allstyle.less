@@ -1,0 +1,235 @@
+#login-form {
+	@login-form-width: 400px;
+
+	max-width: @login-form-width;
+	margin: auto;
+	
+	input {
+		width: calc(@login-form-width ~" - " @form-element-padding-h*2);
+	}
+}
+
+.buttons-place {
+	position: relative;
+	
+	margin: 20px 0;
+	
+	button {
+		position: absolute;
+	}
+}
+
+.menu-block {
+	@menu-height: 36px;
+	@menu-button-size: 30px;
+
+	margin: 15px 0;
+	
+	height: @menu-height;
+	
+	.menu-block-button {		
+		display: inline-block;
+		
+		min-width: @menu-height;
+		height: @menu-height;
+		line-height: @menu-height;
+		
+		background-position: (@menu-height - @menu-button-size) / 2 50%;
+		background-repeat: no-repeat;
+		background-size: @menu-button-size;
+		
+		&.menu-block-button__sort {
+			background-image: url('../image/sort_black.png');
+			padding-left: @menu-height;
+		}
+		&.menu-block-button__delete {
+			background-image: url('../image/delete_black.png');
+			padding-left: @menu-height;
+		}
+		
+	}
+}
+
+.empty-screen {	
+	text-align: center;
+	
+	.image-block {		
+		width: 100%;
+		height: 350px;
+		
+		background-size: auto 100%;
+		background-position: 50% 50%;
+		background-repeat: no-repeat;
+	}
+}
+
+.training-block {
+	@training-trash-height: 50px;
+	@trash-image-size: 32px;
+
+	.training-shots {
+		margin: 15px 0;
+	}
+	
+}
+
+.run-training-button {
+	@imgsize: 50px;
+	
+	display: block;
+
+	background-image: url("../image/send_black.png");
+	background-size: @imgsize @imgsize;
+	background-repeat: no-repeat;
+	background-position: 100% 50%;
+	
+	padding-right: @imgsize + 10px;
+	
+	color: @black;
+	&:visited { color: @black; }
+	&:active { color: @black; }
+	&:focus { color: @black; }
+}
+
+.training-status, .game-status {
+	.font > .headline();
+	
+	color: @red-700;
+}
+
+@table-size-x: 152.5;
+@table-size-y: 274;
+@table-net-over: 15.25;
+@net-size: 5px;
+@layout-size: 5px;
+@table-height: 300px;
+@over-height: 50px;
+@table-width: (@table-height / (@table-size-y / 2)) * @table-size-x;
+	
+.tennis-table-wrap {
+	height: @table-height + @over-height;
+	padding: 10px;
+	
+	.tennis-table {	
+		position: relative;
+	
+		height: @table-height+@over-height;
+		width: @table-width;
+		margin: auto;
+		
+		background: @blue-900;
+		
+		.tennis-table-layout {
+			position: absolute;
+			top: 0;
+			left: @layout-size;
+			
+			height: @table-height+@over-height - @layout-size * 2;
+			width: @table-width - @layout-size * 3;
+		
+			& > div {
+				display: inline-block;
+				
+				height: 100%;
+				width: 50%;
+				width: calc(~"50% - " @layout-size);
+				margin-right: -@layout-size;
+				
+				border: @layout-size solid @white;
+				border-top: none;
+			}
+		}
+	
+		.tennis-table-net {
+			@net-width: (@table-height / (@table-size-y / 2)) * (@table-size-x + 2*@table-net-over) - 2*@net-size;
+			
+			position: absolute;
+			left: (@table-width - @net-width) / 2;
+			top: @over-height - @net-size;
+		
+			height: @net-size;
+			width: @net-width;
+			margin: auto;
+			
+			border-left: @net-size solid @black;
+			border-right: @net-size solid @black;
+			
+			background: @white;
+			
+			.box-shadow(2px, 2px, 5px, @black);
+		}
+		
+		.tennis-zone-wrap {
+			position: absolute;
+			
+			left: 0;
+			top: @over-height;
+			
+			height: @table-height;
+			width: @table-width;
+			
+			.tennis-table-row {
+				height: 100%/3;
+				
+				.tennis-table-cell {
+					display: inline-block;
+					width: 100%/4;
+					height: 100%;
+					
+					opacity: 0.7;
+					
+					.transition(@duration: 0.5s, @delay: 0s);
+					
+					&:hover {
+						background-color: @red-700;
+					}
+					
+					&.tennis-zone-selected {
+						background-color: @green-500;
+					}
+					
+					&.tennis-table-cell-nocolor {
+						background-color: transparent !important;
+					}
+				}
+			}
+		}
+	}
+}
+
+.training-position-block {
+	@tbp-size: 48px;
+	@tbp-image-size: 36px;
+	
+	.training-position-row {		
+		width: @table-width;
+		margin: auto;
+		
+		.training-position {			
+			display: inline-block;
+			
+			width: @table-width / 3;
+			height: @tbp-size;
+		
+			background-position: 50% 50%;
+			background-repeat: no-repeat;
+			background-size: @tbp-image-size;
+			
+			background-image: url('../image/location_black.png');
+			
+			&:hover {
+				background-color: fade(@red-700, 25%);
+			}
+		}
+	}
+}
+
+.dev-url-block {
+	border: 2px solid @blue-500;
+	
+	.font > .subhead();
+	
+	background-color: @light-blue-50;
+	
+	padding: 8px;
+}

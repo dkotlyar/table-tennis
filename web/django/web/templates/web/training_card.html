@@ -1,0 +1,37 @@
+<div id="card-{{ forloop.counter }}" class="card-wrap 
+	{% if training.archived %}
+		card-archived
+	{% endif %}">
+	<div class="card-menu">
+		{% spaceless %}
+			{% if training.shots.count > 0 %}
+				<a class="card-button card-button__start" href="{% url 'web:training-start' training.id %}" 
+					title="Запустить программу тренировки"></a>
+			{% endif %}
+			{# <a class="card-button card-button__edit" href="{% url 'web:training-edit' training.id %}" title="Редактировать"></a>  #}
+			<a class="card-button card-button__show js-training-show" data-tid="{{ training.id }}" href="javascript://"
+				{% if not training.archived %}style="display:none"{% endif %} title="Показать"></a>
+			<a class="card-button card-button__hide js-training-hide" data-tid="{{ training.id }}" href="javascript://" 
+				{% if training.archived %}style="display:none"{% endif %} title="Скрыть"></a>
+		{% endspaceless %}
+	</div>
+	<a class="card" href="{% url 'web:training-edit' training.id %}">
+		<div class="card-title">{{ training.name }}</div>
+		<div class="card-subtitle-block">
+			<div>
+				<span class="card-subtitle">Ударов:</span> 
+				<span class="card-subtitle-colored">{{ training.shots.count|default:"нет" }}</span>
+				<span class="card-subtitle">Повторений:</span> 
+				<span class="card-subtitle-colored">{{ training.repeat|default:"не указано" }}</span>
+			</div>
+			<div>
+				<span class="card-subtitle">Ранги спортсменов:</span>
+				{% if training.role_min == training.role_max %}
+					<span class="card-subtitle-colored">{{ training.get_role_min_display }}</span>
+				{% else %}
+					<span class="card-subtitle-colored">{{ training.get_role_min_display }} &mdash; {{ training.get_role_max_display }}</span>
+				{% endif %}
+			</div>
+		</div>
+	</a>
+</div>

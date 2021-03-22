@@ -1,0 +1,40 @@
+{% load staticfiles %}
+
+<div id="card-{{ forloop.counter }}" class="card-wrap">
+	<div class="card-media">
+		<img height="100" src="{% static 'web/image/t' %}{{ shot.zone }}.png" />
+	</div>
+	{% if action_type == 'copy' %}
+		<a class="card with-media" href="{% url 'web:shot-copy' shot.id training_id %}">
+	{% else %}
+		<div class="card with-media">
+		{# <a class="card with-media" href="{% url 'web:shot-edit' shot.id %}"> #}
+	{% endif %}
+		<div class="card-title">{{ shot.name }}</div>
+		<div class="card-subtitle-block">
+			<div>
+				<span class="card-subtitle">Задержка выстрела:</span> 
+				<span class="card-subtitle-colored">{{ shot.before_delay|default_if_none:"&mdash;" }} мс</span>
+			</div>
+			<div>
+				<span class="card-subtitle">Параметры:</span> 
+				<span class="card-subtitle-colored">{{ shot.ball_speed|default_if_none:"&mdash;" }} км/ч</span>
+				<span class="card-subtitle-colored">{{ shot.ball_rotation|default_if_none:"&mdash;" }} об/мин</span>
+				<span class="card-subtitle-colored">{{ shot.get_shot_type_display|lower }}</span>
+				{% if shot.ball_rotation > 0 %}
+					<span class="card-subtitle-colored">
+						{{ shot.get_rotation_type_display|lower }}
+						{% if shot.leteral_rotation != 2 %}
+							{{ shot.get_leteral_rotation_display|lower }} боковое
+						{% endif %}
+						вращение
+					</span>
+				{% endif %}
+			</div>
+		</div>
+	{% if action_type == 'copy' %}
+	</a>
+	{% else %}
+	</div>
+	{% endif %}
+</div>

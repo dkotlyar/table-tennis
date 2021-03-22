@@ -1,0 +1,286 @@
+@form-element-height: 35px;
+@form-element-padding-v: 3px;
+@form-element-padding-h: 10px;
+
+h1, h2, h3, h4, h5, h6 {
+	margin: 16px 0;
+}
+
+h1, h3, h5 {
+	color: fade(@black, @opacity-primary);
+}
+
+h2, h4, h6 {
+	color: fade(@black, @opacity-secondary);
+}
+
+h1, h2 {
+	.font > .display2();
+}
+
+h3, h4 {
+	.font > .display1();
+}
+
+h5, h6 {
+	.font > .headline();
+}
+
+p {
+	.font > .body1();
+	
+	&.headline {
+		.font > .headline();
+	}
+	&.title {
+		.font > .title();
+	}
+	&.subhead {
+		.font > .subhead();
+	}
+	&.body2 {
+		.font > .body2();
+	}
+	&.caption {
+		.font > .caption();
+	}
+}
+
+label {
+	display: block;
+	
+	margin: 5px;
+	
+	.font > .body1();
+	
+	color: fade(@black, @opacity-secondary);
+}
+	
+input {
+/*
+	display: inline-block;
+*/
+
+	height: @form-element-height;
+	line-height: @form-element-height;
+
+	outline: none;
+	border: none;
+	
+	background-color: transparent;
+	border-bottom: 1px solid @gray-400;
+	
+	margin: 0;
+	padding: @form-element-padding-v @form-element-padding-h;
+	
+	width: calc(~"100% - "@form-element-padding-h*2);
+
+	.font > .subhead();
+	
+	&:focus {
+		border-bottom: 2px solid @red-400;
+	}
+}
+
+textarea {
+	.font > .subhead();
+	color: fade(@black, @opacity-primary);
+	background-color: transparent;
+	
+	outline: none;
+	border: none;
+	border-bottom: 1px solid @gray-500;
+	
+	margin: 8px 0;
+	padding-top: 16px;
+	padding-bottom: 15px;
+	
+	width: 100%;
+	max-width: 100%;
+	
+	&.error {
+		padding-bottom: 14px;
+		border-bottom: 2px solid @deep-orange-A700;
+	}
+	
+	&:active, &:focus {
+		padding-bottom: 14px;
+		border-bottom: 2px solid @blue-500;
+	}
+	
+}
+
+:-moz-placeholder {
+	color: fade(@black, 38%);
+}
+::-moz-placeholder {
+	color: fade(@black, 38%);
+}
+::-webkit-input-placeholder {
+	color: fade(@black, 38%);
+}
+:-o-placeholder {
+	color: fade(@black, 38%);
+}
+:-ms-input-placeholder {
+	color: fade(@black, 38%);
+}
+:placeholder {
+	color: fade(@black, 38%);
+}
+
+button, .like-button {
+	display: inline-block;
+	
+	@bgcolor: @blue-400;
+	@hovercolor: @blue-600;
+	@fgcolor: @white;
+
+	height: @form-element-height;
+	line-height: @form-element-height;
+	
+	min-width: @form-element-height; 
+
+	outline: none;
+	border: none;
+	
+	border-radius: 3px;
+
+	margin: 0;
+	padding: @form-element-padding-v @form-element-padding-h;
+
+	background-color: @bgcolor;
+	color: @fgcolor;
+
+	.font > .button();
+	
+	cursor: pointer;
+	
+	&:hover {
+		background-color: @hovercolor;
+		color: @fgcolor;
+	}
+	&:visited { color: @fgcolor; }
+	&:active { color: @fgcolor; }
+	&:hover { color: @fgcolor; }
+	
+	&.grey-button {
+		background-color: @gray-500;
+		&:hover {
+			background-color: @gray-600;
+		}
+	}
+}
+
+.like-button {
+	height: @form-element-height - 2*@form-element-padding-v;
+}
+
+a {
+	@link-color: @blue-600;
+	@link-color-hover: @blue-800;
+	@link-color-visited: @blue-600;
+	@link-color-active: @blue-600;
+
+	text-decoration: none;
+	
+	.font > .body1();
+	
+	color: @link-color;
+	&:visited { color: @link-color-visited; }
+	&:active { color: @link-color-active; }
+	&:hover { color: @link-color-hover; }
+}
+
+table {
+	width: 100%;
+
+	margin: 16px 0;
+	padding: 0;
+	
+	border: 1px solid @gray-500;
+	border-collapse: collapse;
+	.box-shadow(0px, 2px, 5px, @gray-500);
+	
+	tr {
+		height: 48px;
+		
+		border-bottom: 1px solid @gray-500;
+		
+		background-color: @white;
+		
+		td {
+			padding: 0 24px;
+
+			.font > .body1();
+			color: fade(@black, @opacity-primary);
+		}
+		
+		&:hover {
+			background-color: @gray-200;
+		}
+	}
+}
+
+.progress-wrap {
+	@height: 30px;
+	@valueBorder: 2px;
+	@valueHeight: @height - 2*@valueBorder;
+	
+	height: @height;
+	padding: @valueBorder;
+	border-radius: @height / 2;
+	background-color: @gray-600;
+	
+	.progress-value {
+		height: 100%;
+		width: 0%;
+		min-width: @height;
+		
+		border-radius: @valueHeight / 2;
+		background-color: @gray-300;
+		
+		.transition(width, 1s, linear, 0s);
+	}
+}
+
+.dialog {
+	text-align: center;
+	
+	.dialog-buttons {
+		& > *:not(:first-child) {
+			margin-left: 20px;
+		}
+	}
+	.dialog-progress {
+		
+	}
+}
+
+.warning {
+	background-image: url('../image/warning.png');
+    background-repeat: no-repeat;
+    background-position: 100% 50%;
+    background-size: 25px;
+    padding-right: 30px;
+}
+
+.inline-block {
+	display: inline-block !important;
+}
+
+.display-none {
+	display: none !important;
+}
+
+.align-center {
+	text-align: center;
+}
+
+.align-left {
+	text-align: left;
+}
+
+.align-right {
+	text-align: right;
+}

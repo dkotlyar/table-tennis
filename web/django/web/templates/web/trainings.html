@@ -1,0 +1,31 @@
+{% extends 'web/base.html' %}
+{% load staticfiles %}
+
+{% block title %}Программы тренировок{% endblock %}
+{% block header %}Программы тренировок{% endblock %}
+
+{% block content %}
+	
+	{% for training in training_list %}
+		{% include 'web/training_card.html' %}
+	{% empty %}
+		<div class="empty-screen">
+			<div class="image-block" style="background-image: url('{% static 'web/image/empty_training_screen.png' %}')"></div>
+			<p class="headline">Вы ещё не добавили ни одной программы тренировки.</p>
+			<p>Чтобы добавить тренировку, воспользуйтесь кнопкой "<strong>+</strong>" в углу экрана.</p>
+		</div>
+	{% endfor %}
+	
+	<div class="content-wrap-padding">
+		<p>
+			<a href="javascript://" class="js-toggle-archived-card">Показать скрытые программы</a>
+		</p>
+	</div>
+	
+{% endblock %}
+
+{% block float-button %}
+	<div class="float-button">
+		<a href="{% url 'web:training-add' %}" class="float-button-add"></a>
+	</div>
+{% endblock %}

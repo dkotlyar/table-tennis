@@ -1,0 +1,53 @@
+<div class="content-wrap-padding">
+	<h3>Где стоит тренажёр?</h3>
+	{% spaceless %}
+	<div class="tennis-table-wrap">
+		<div class="tennis-table">
+			<div class="tennis-table-layout">
+				<div></div>
+				<div></div>
+			</div>
+			<div class="tennis-table-net"></div>
+			<div class="tennis-zone-wrap">
+				<div class="tennis-table-row">
+					<div class="tennis-table-cell tennis-table-cell-nocolor"></div>
+					<div class="tennis-table-cell tennis-table-cell-nocolor"></div>
+					<div class="tennis-table-cell tennis-table-cell-nocolor"></div>
+					<div class="tennis-table-cell tennis-table-cell-nocolor"></div>
+				</div>
+				<div class="tennis-table-row">
+					<div class="tennis-table-cell tennis-table-cell-nocolor"></div>
+					<div class="tennis-table-cell tennis-table-cell-nocolor"></div>
+					<div class="tennis-table-cell tennis-table-cell-nocolor"></div>
+					<div class="tennis-table-cell tennis-table-cell-nocolor"></div>
+				</div>
+				<div class="tennis-table-row">
+					<div class="tennis-table-cell tennis-table-cell-nocolor"></div>
+					<div class="tennis-table-cell tennis-table-cell-nocolor"></div>
+					<div class="tennis-table-cell tennis-table-cell-nocolor"></div>
+					<div class="tennis-table-cell tennis-table-cell-nocolor"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+	{% endspaceless %}
+	{% spaceless %}
+	<div class="training-position-block">
+		<div class="training-position-row">
+			<a class="training-position" href="javascript://" onclick="trainer_position_send({{ training_id }}, 150, -600);"></a>
+			<a class="training-position" href="javascript://" onclick="trainer_position_send({{ training_id }}, 150, 0);"></a>
+			<a class="training-position" href="javascript://" onclick="trainer_position_send({{ training_id }}, 150, 600);"></a>
+		</div>
+		<div class="training-position-row">
+			<a class="training-position" href="javascript://" onclick="trainer_position_send({{ training_id }}, 300, -600);"></a>
+			<a class="training-position" href="javascript://" onclick="trainer_position_send({{ training_id }}, 300, 0);"></a>
+			<a class="training-position" href="javascript://" onclick="trainer_position_send({{ training_id }}, 300, 600);"></a>
+		</div>
+		<div class="training-position-row">
+			<a class="training-position" href="javascript://" onclick="trainer_position_send({{ training_id }}, 500, -600);"></a>
+			<a class="training-position" href="javascript://" onclick="trainer_position_send({{ training_id }}, 500, 0);"></a>
+			<a class="training-position" href="javascript://" onclick="trainer_position_send({{ training_id }}, 500, 600);"></a>
+		</div>
+	</div>
+	{% endspaceless %}
+</div>

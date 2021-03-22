@@ -1,0 +1,126 @@
+@card-background: @white;
+@card-bordercolor: fade(@black, 25%);
+@card-foreground: fade(@black, @opacity-primary);
+
+@card-padding: 10px;
+@card-size: 50px;
+
+@media-padding: 10px;
+@media-size: (@card-size + @card-padding - @media-padding) * 2;
+
+@menu-button-size: 30px;
+
+.card-wrap {
+	margin: 0;
+	margin-bottom: -1px;
+	
+	position: relative;
+		
+	overflow: hidden;
+	
+	.card {		
+		display: block;
+		padding: @card-padding;
+		
+		margin: 0;
+	
+		background-color: @card-background;
+		color: @card-foreground;
+		
+		border: 1px solid @card-bordercolor;
+		
+		.card-title {
+			line-height: @card-size;	
+			height: @card-size;
+			
+			.font > .title();
+			font-weight: 300;
+		}
+		
+		.card-subtitle-block {
+			margin: 10px 0;
+			min-height: 30px;
+			
+			.font > .body1();
+			
+			.card-subtitle {
+				color: fade(@black, @opacity-primary);
+			}
+			.card-subtitle-colored {
+				display: inline-block;
+				color: @cyan-600;
+				margin-right: 10px;
+			}
+		}
+		
+		&.with-media {
+			padding-right: @card-padding + @media-size;
+		}
+	}
+	
+	.card-media {
+		position: absolute;
+		
+		height: @media-size;
+		width: @media-size;
+		
+		right: @media-padding;
+		top: @media-padding;
+		
+		overflow: hidden;
+		
+		text-align: center;	
+		line-height: @media-size;
+		
+		.transition(top, @duration: 0.5s, @delay: 0.2s);
+		
+		.font > .subhead();
+		
+		img {
+			width: 100%;
+			height: 100%;
+		}
+	}
+	
+	.card-menu {
+		position: absolute;
+		
+		height: @card-size;
+		line-height: @card-size;
+		
+		right: @card-padding;
+		top: @card-padding;
+		
+		opacity: 0.5;
+		
+		.card-button {			
+			display: inline-block;
+			
+			width: @card-size;
+			height: @card-size;
+			
+			background-size: @menu-button-size @menu-button-size;
+			background-repeat: no-repeat;
+			background-position: 50% 50%;
+			
+			&.card-button__send {
+				background-image: url('../image/send_black.png');
+			}
+			&.card-button__start {
+				background-image: url('../image/start_black.png');
+			}
+			&.card-button__delete {
+				background-image: url('../image/delete_black.png');
+			}
+			&.card-button__edit {
+				background-image: url('../image/edit_black.png');
+			}
+			&.card-button__hide {
+				background-image: url('../image/hide_black.png');
+			}
+			&.card-button__show {
+				background-image: url('../image/show_black.png');
+			}
+		}
+	}
+}

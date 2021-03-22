@@ -1,0 +1,31 @@
+@float-button-position-bottom: 20px;
+@float-button-position-right: 5%;
+
+@float-button-size: 48px;
+@image-size: 32px;
+
+.float-button {	
+	position: fixed;
+	
+	bottom: @float-button-position-bottom;
+	right: @float-button-position-right;
+	
+	width: @float-button-size;
+	height: @float-button-size;
+	
+	transform: rotate(0deg);
+	
+	.transition(transform, 1s, ease-in-out, 0s);
+	
+	&:hover {
+		transform: rotate(180deg);
+	}	
+}
+
+.float-button-add {
+	.image-button(@float-button-size, @float-button-size, (@float-button-size - @image-size)/2, "add.png");
+	
+	background-color: @red-A400;
+	
+	border-radius: @float-button-size / 2;
+}

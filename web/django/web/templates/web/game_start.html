@@ -1,0 +1,50 @@
+{% extends 'web/base.html' %}
+{% load staticfiles %}
+
+{% block title %}Запуск игры{% endblock %}
+{% block header %}Запуск игры{% endblock %}
+
+{% block footer %}
+	{{ block.super }}
+	<script type="text/javascript" src="{% static 'web/js/jquery.form.js' %}"></script>
+	<script type="text/javascript" src="{% static 'web/js/jquery.nice-select.js' %}"></script>
+	
+	<script>
+		setTimeout(function(){
+			game_update({{ game.pk }});
+		}, 1000);
+	</script>
+{% endblock %}
+
+{% block content %}	
+	<div class="content-wrap-padding game-block">
+		
+		<div class="game-status">
+			<span>{{ game.get_state_display }}</span>
+		</div>
+		
+		<h3>{{ game }}</h4>
+		<p>
+			Количество повторений: <strong>{{ game.repeat_count }}</strong>
+		</p>
+		<div class="positions">
+			{% for position in game.positions %}
+				<div>
+					<input type="hidden" name="position_id" value="{{ position.pk }}" />
+					{% include 'web/position_item.html' %}
+				</div>
+			{% endfor %}
+		</div>
+		<p>
+			<button class="js-button-play" style="display: none;" onclick="game_play({{ game.pk }});">Запустить</button>
+			<button class="js-button-pause" style="display: none;" onclick="game_pause({{ game.pk }});">Пауза</button>
+			<button class="js-button-stop" style="display: none;" onclick="game_stop({{ game.pk }});">Остановить</button>
+			{% if game.training != None %}
+				<a class="like-button js-button-replay" style="display: none;" href="{% url 'web:training-start' game.training.pk %}">Повторить игру</a>
+				<a class="like-button" href="{% url 'web:training-edit' game.training.pk %}">Редактировать программу</a>
+			{% else %}
+				<a class="like-button js-button-replay" style="display: none;" href="{% url 'web:positions' %}">Перейти в ручной режим</a>
+			{% endif %}
+		</p>
+	</div>
+{% endblock %}
