@@ -1,0 +1,36 @@
+version: '3'
+services:
+  db:
+    image: postgres
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    ports:
+      - 5432:5432
+    volumes:
+      - dbdata:/var/lib/postgresql/data
+        
+  web:
+    image: robot/django-web
+    ports:
+      - 8000:8000
+    depends_on:
+      - db
+        
+  positioncalc:
+    image: robot/django-web
+    command: python manage.py position_calc
+    depends_on:
+      - db
+
+  runusart:
+    image: robot/django-web
+    command: python manage.py runusart
+    devices:
+      - /dev/ttyS3:/dev/ttyAMA0
+    depends_on:
+      - db
+
+volumes:
+  dbdata:

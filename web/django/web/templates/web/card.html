@@ -1,0 +1,8 @@
+<div id="{% block card-id %}{% endblock %}" class="card-wrap">
+	<div class="card-media">{% block card-media %}{% endblock %}</div>
+	<div class="card-menu">{% block card-menu%}{% endblock %}</div>
+	<a class="card {%block card-class%}{% endblock %}" href="{% block card-url %}{% endblock %}">
+		<div class="card-title">{% block card-title %}{% endblock %}</div>
+		<div class="card-subtitle-block">{% block card-information-block %}{% endblock %}</div>
+	</a>
+</div>

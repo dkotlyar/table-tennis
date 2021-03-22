@@ -1,0 +1,19 @@
+{% extends "web/base.html" %}
+{% load staticfiles %}
+
+{% block title %}Тренажёр{% endblock %}
+
+{% block content %}
+	<div class="content-wrap-padding dialog">
+		<h3>Вы действительно хотите выключить тренажёр?</h3>
+		<p class="dialog-buttons">
+			<button onclick="shutdown();">Да, выключить</button>
+			<a class="like-button grey-button" href="{% url 'web:index' %}">Нет, продолжить работу</a>
+		</p>
+		<div class="display-none dialog-progress">
+			<div class="progress-wrap">
+				<div class="progress-value"></div>
+			</div>
+		</div>
+	</div>
+{% endblock %}

@@ -1,0 +1,87 @@
+{% extends 'web/base.html' %}
+{% load staticfiles %}
+
+{% block title %}Ручное управление{% endblock %}
+{% block header %}Ручное управление{% endblock %}
+
+{% block sidebar-menu %}
+	{{ block.super }}
+	<li><a class="sidebar-button__terminal" href="{% url 'web:terminal' %}">Терминал</a></li>
+{% endblock %}
+
+{% block content %}
+	<div class="content-wrap-padding">
+		<p>
+			<label for="select-power-mode">Режим работы:</label>
+			<select name="select-power-mode" class="js-select-power-mode">
+				<option value="0">Ручной режим</option>
+				<option value="1">Режим программирования</option>
+				{# <option value="2">Режим одиночного выстрела</option> #}
+			</select>
+		<p>
+		<form id="position-form" action="{% url 'web:positions' %}" method="POST">
+			{% csrf_token %}
+			{{ form.non_field_errors }}
+			<p>
+				<label for="{{ form.top_roll_speed.id_for_label }}">{{ form.top_roll_speed.label }}: <strong>{{ form.top_roll_speed.value }}</strong> об/мин</label>
+				{{ form.top_roll_speed }}
+			</p>
+			<p>
+				<label for="{{ form.bottom_roll_speed.id_for_label }}">{{ form.bottom_roll_speed.label }}: <strong>{{ form.bottom_roll_speed.value }}</strong> об/мин</label>
+				{{ form.bottom_roll_speed }}
+			</p>
+			<p>
+				<label for="{{ form.lift.id_for_label }}">{{ form.lift.label }}: <strong>{{ form.lift.value }}</strong> мм</label>
+				{{ form.lift }}
+			</p>
+			<p>
+				<label for="{{ form.rotation.id_for_label }}">{{ form.rotation.label }}: <strong>{{ form.rotation.value }}</strong> °</label>
+				{{ form.rotation }}
+			</p>
+			<p>
+				<label for="{{ form.incline.id_for_label }}">{{ form.incline.label }}: <strong>{{ form.incline.value }}</strong> °</label>
+				{{ form.incline }}
+			</p>
+			<p>
+				<label for="{{ form.rollrotation.id_for_label }}">{{ form.rollrotation.label }}: <strong>{{ form.rollrotation.value }}</strong> °</label>
+				{{ form.rollrotation }}
+			</p>
+			<p>
+				<label for="{{ form.before_delay.id_for_label }}">{{ form.before_delay.label }}: <strong>{{ form.before_delay.value }}</strong> мс</label>
+				{{ form.before_delay }}
+			</p>
+			<p>
+				<button class="js-button-start-position">Старт</button>
+				<button class="js-button-start-feed">Запустить подачу мячей</button>
+			</p>
+			<p>
+				<button>Добавить позицию</button>
+			</p>
+		</form>
+	</div>
+	
+	{% if positions|length > 0 %}
+		<div class="content-wrap-padding menu-block">
+			{# <a class="menu-block-button menu-block-button__sort" href="javascript:toogle_list_sort();">Сортировать</a> #}
+			<a class="menu-block-button menu-block-button__delete" href="javascript:toogle_list_item_delete();">Удалить</a>
+		</div>
+		
+		<div class="positions">
+			{% for position in positions %}
+				<div>
+					<input type="hidden" name="position_id" value="{{ position.pk }}" />
+					{% include 'web/position_item.html' %}
+				</div>
+			{% endfor %}
+		</div>
+		<p class="content-wrap-padding">
+			<a href="{% url 'web:game-create' %}" class="like-button js-button-start-program" style="display: none;">Запустить программу тренировки</a>
+		</p>
+	{% else %}
+		<div class="empty-screen">
+			<div class="image-block" style="background-image: url('{% static 'web/image/empty_shot_screen.png' %}')"></div>
+			<p class="headline">Вы ещё не добавили ни одного позиции</p>
+		</div>
+	{% endif %}
+
+{% endblock %}

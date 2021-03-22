@@ -1,0 +1,38 @@
+{% load staticfiles %}
+
+<div id="list-item-{{ forloop.counter }}" class="list-item-wrap">
+	<div class="list-item-swap"></div>
+	<div class="list-item-media">
+		<img src="{% static 'web/image/tc' %}{{ shot.zone }}.png" />
+	</div>
+	<div class="list-item-menu">
+		{% spaceless %}
+			<a class="list-item-button list-item-button__delete js-delete-list-item" href="javascript://" 
+				data-sid="{{ shot.id }}" title="Удалить удар"></a>
+		{% endspaceless %}
+	</div>
+	<a class="list-item with-media" href="{% url 'web:shot-edit' shot.id %}">
+		<div class="list-item-title">{{ shot.name }}</div>
+		<div class="list-item-subtitle-block">
+			<div>
+				<span class="list-item-subtitle">Задержка выстрела:</span> 
+				<span class="list-item-subtitle-colored">{{ shot.before_delay|default_if_none:"&mdash;" }} мс</span>
+			</div>
+			<div>
+				<span class="list-item-subtitle">Параметры:</span> 
+				<span class="list-item-subtitle-colored">{{ shot.ball_speed|default_if_none:"&mdash;" }} км/ч</span>
+				<span class="list-item-subtitle-colored">{{ shot.ball_rotation|default_if_none:"&mdash;" }} об/мин</span>
+				<span class="list-item-subtitle-colored">{{ shot.get_shot_type_display|lower }}</span>
+				{% if shot.ball_rotation > 0 %}
+					<span class="list-item-subtitle-colored">
+						{{ shot.get_rotation_type_display|lower }}
+						{% if shot.leteral_rotation != 2 %}
+							{{ shot.get_leteral_rotation_display|lower }} боковое
+						{% endif %}
+						вращение
+					</span>
+				{% endif %}
+			</div>
+		</div>
+	</a>
+</div>

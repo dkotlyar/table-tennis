@@ -1,0 +1,30 @@
+{% extends 'web/base.html' %}
+{% load staticfiles %}
+
+{% block title %}Удары{% endblock %}
+{% block header %}Удары{% endblock %}
+
+{% block content %}
+	{% for training in training_list %}
+		{% with shots=training.shots %}
+			{% if shots|length > 0 %}
+				<div class="content-wrap-padding">
+					<h3>
+						<a href="{% url 'web:training-edit' training.id %}">{{ training.name }}</a>
+					</h3>
+				</div>
+				{% for shot in shots %}
+					{% include 'web/shot_card.html' %}
+				{% endfor %}
+			{% endif %}
+		{% endwith %}
+	{% empty %}
+		<div class="empty-screen">
+			<p>Здесь будут отображаться удары из всех программ тренировок.</p>
+			<div class="image-block" style="background-image: url('{% static 'web/image/empty_training_screen.png' %}')"></div>
+			<p class="headline">Вы ещё не добавили ни одной программы тренировки.</p>
+			{# <p>Чтобы добавить тренировку, воспользуйтесь кнопкой "<strong>+</strong>" в углу экрана.</p> #}
+		</div>
+	{% endfor %}
+	
+{% endblock %}

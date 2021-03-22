@@ -1,0 +1,255 @@
+#login-form .empty-screen {
+  text-align: center;
+}
+#login-form .empty-screen .image-block {
+  width: 100%;
+  height: 350px;
+  background-size: auto 100%;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+}
+#login-form .training-block .training-shots {
+  margin-top: 15px;
+}
+#login-form .buttons-place {
+  position: relative;
+  margin: 20px 0;
+}
+#login-form .buttons-place button {
+  position: absolute;
+}
+#login-form .card-wrap .Card [class*="Line"] {
+  margin-left: 111px;
+}
+#login-form .card-wrap .Card p {
+  white-space: normal;
+}
+#login-form .card-wrap .float-button {
+  position: fixed;
+  bottom: 20px;
+  right: 5%;
+  width: 48px;
+  height: 48px;
+  transform: rotate(0deg);
+}
+#login-form .card-wrap .float-button:hover {
+  transform: rotate(180deg);
+}
+#login-form .card-wrap .float-button-add {
+  background-color: #ff1744;
+  border-radius: 24px;
+}
+#login-form .card-wrap body,
+#login-form .card-wrap html {
+  margin: 0;
+  padding: 0;
+  background-color: #f5f5f5;
+}
+#login-form .card-wrap body.hide-menu #sidebar,
+#login-form .card-wrap html.hide-menu #sidebar,
+#login-form .card-wrap body.hard-hide-menu #sidebar,
+#login-form .card-wrap html.hard-hide-menu #sidebar {
+  width: 0;
+}
+#login-form .card-wrap body.hide-menu #header,
+#login-form .card-wrap html.hide-menu #header,
+#login-form .card-wrap body.hard-hide-menu #header,
+#login-form .card-wrap html.hard-hide-menu #header {
+  padding-left: 58px;
+}
+#login-form .card-wrap body.hide-menu #content,
+#login-form .card-wrap html.hide-menu #content,
+#login-form .card-wrap body.hard-hide-menu #content,
+#login-form .card-wrap html.hard-hide-menu #content {
+  margin-left: 0;
+}
+#login-form .card-wrap body.show-menu #sidebar,
+#login-form .card-wrap html.show-menu #sidebar,
+#login-form .card-wrap body.hard-show-menu #sidebar,
+#login-form .card-wrap html.hard-show-menu #sidebar {
+  width: 200px;
+}
+#login-form .card-wrap body.show-menu #sidebar ul li a,
+#login-form .card-wrap html.show-menu #sidebar ul li a,
+#login-form .card-wrap body.hard-show-menu #sidebar ul li a,
+#login-form .card-wrap html.hard-show-menu #sidebar ul li a {
+  color: fade(#ffffff,100%);
+}
+#login-form .card-wrap body.show-menu #header,
+#login-form .card-wrap html.show-menu #header,
+#login-form .card-wrap body.hard-show-menu #header,
+#login-form .card-wrap html.hard-show-menu #header {
+  padding-left: 210px;
+}
+#login-form .card-wrap body.show-menu #content,
+#login-form .card-wrap html.show-menu #content,
+#login-form .card-wrap body.hard-show-menu #content,
+#login-form .card-wrap html.hard-show-menu #content {
+  margin-left: 200px;
+}
+#login-form .card-wrap body.show-menu a.open-menu-button,
+#login-form .card-wrap html.show-menu a.open-menu-button,
+#login-form .card-wrap body.hard-show-menu a.open-menu-button,
+#login-form .card-wrap html.hard-show-menu a.open-menu-button {
+  z-index: 0;
+  opacity: 0;
+  transform: rotate(-180deg);
+}
+#login-form .card-wrap body.show-menu a.close-menu-button,
+#login-form .card-wrap html.show-menu a.close-menu-button,
+#login-form .card-wrap body.hard-show-menu a.close-menu-button,
+#login-form .card-wrap html.hard-show-menu a.close-menu-button {
+  z-index: 9999;
+  opacity: 1;
+  transform: rotate(0deg);
+}
+#login-form .card-wrap body.hide-header #header,
+#login-form .card-wrap html.hide-header #header,
+#login-form .card-wrap body.hard-hide-header #header,
+#login-form .card-wrap html.hard-hide-header #header {
+  top: -60px;
+}
+#login-form .card-wrap body.hide-header #content,
+#login-form .card-wrap html.hide-header #content,
+#login-form .card-wrap body.hard-hide-header #content,
+#login-form .card-wrap html.hard-hide-header #content {
+  margin-top: 10px;
+}
+#login-form .card-wrap body.hide-menu.hide-header .sidebar-menu-control,
+#login-form .card-wrap html.hide-menu.hide-header .sidebar-menu-control,
+#login-form .card-wrap body.hard-hide-menu.hide-header .sidebar-menu-control,
+#login-form .card-wrap html.hard-hide-menu.hide-header .sidebar-menu-control,
+#login-form .card-wrap body.hide-menu.hard-hide-header .sidebar-menu-control,
+#login-form .card-wrap html.hide-menu.hard-hide-header .sidebar-menu-control,
+#login-form .card-wrap body.hard-hide-menu.hard-hide-header .sidebar-menu-control,
+#login-form .card-wrap html.hard-hide-menu.hard-hide-header .sidebar-menu-control {
+  display: none;
+}
+#login-form .card-wrap body.show-overpage #overpage,
+#login-form .card-wrap html.show-overpage #overpage {
+  display: block;
+}
+#login-form .card-wrap #sidebar {
+  position: fixed;
+  z-index: 101;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 48px;
+  background-color: #616161;
+  overflow: hidden;
+}
+#login-form .card-wrap #sidebar:hover {
+  overflow-y: auto;
+}
+#login-form .card-wrap #sidebar ul {
+  margin: 0;
+  padding: 0;
+  padding-top: 65px;
+}
+#login-form .card-wrap #sidebar ul li {
+  height: 48px;
+  padding: 0 5px;
+}
+#login-form .card-wrap #sidebar ul li a {
+  display: block;
+  background-color: #616161;
+  background-repeat: no-repeat;
+  background-size: 28px 28px;
+  background-position: 5px 50%;
+  padding-left: 38px;
+  color: fade(#ffffff,0%);
+  height: 38px;
+  line-height: 38px;
+  text-decoration: none;
+  white-space: nowrap;
+  overflow: hidden;
+}
+#login-form .card-wrap #sidebar ul li a:hover {
+  background-color: #424242;
+}
+#login-form .card-wrap #sidebar ul li a.button-home {
+  background-image: url("../image/home.png");
+}
+#login-form .card-wrap #sidebar ul li a.button-profile {
+  background-image: url("../image/profile.png");
+}
+#login-form .card-wrap #sidebar ul li a.button-sportsmen {
+  background-image: url("../image/sportsmen.png");
+}
+#login-form .card-wrap #sidebar ul li a.button-training {
+  background-image: url("../image/training.png");
+}
+#login-form .card-wrap #sidebar ul li a.button-shot {
+  background-image: url("../image/shot.png");
+}
+#login-form .card-wrap #sidebar ul li a.button-handcontrol {
+  background-image: url("../image/handcontrol.png");
+}
+#login-form .card-wrap #sidebar ul li a.button-terminal {
+  background-image: url("../image/terminal.png");
+}
+#login-form .card-wrap #header {
+  position: fixed;
+  z-index: 100;
+  top: 0;
+  width: 100%;
+  height: 60px;
+  line-height: 60px;
+  padding: 0 10px;
+  padding-left: 58px;
+  background: #1976d2;
+  color: #ffffff;
+}
+#login-form .card-wrap .sidebar-menu-control {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 5000;
+}
+#login-form .card-wrap .sidebar-menu-control a.open-menu-button {
+  position: fixed;
+  top: 0;
+  left: 0;
+  opacity: 1;
+  transform: rotate(0deg);
+  z-index: 9999;
+}
+#login-form .card-wrap .sidebar-menu-control a.close-menu-button {
+  position: fixed;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  transform: rotate(180deg);
+  z-index: 0;
+}
+#login-form .card-wrap #content {
+  margin-top: 70px;
+  margin-left: 48px;
+}
+#login-form .card-wrap #content > div {
+  max-width: 800px;
+  margin: auto;
+  padding: 10px 0;
+}
+#login-form .card-wrap #content > div > .content-wrap-padding {
+  padding: 0 10px;
+}
+#login-form .card-wrap #overpage {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+#login-form .card-wrap #overpage > div {
+  max-width: 800px;
+  margin: auto;
+  padding: 10px 0;
+}
+#login-form .card-wrap #overpage > div > .content-wrap-padding {
+  padding: 0 10px;
+}

@@ -1,0 +1,246 @@
+{% extends 'web/base.html' %}
+
+{% block title %}Документация разработчика{% endblock %}
+{% block header %}Документация разработчика{% endblock %}
+
+{% block content %}
+	<h5>Использование API тренажёра</h6>
+	
+	<h6>Получение списка всех тренировок пользователя</h6>
+	<div>
+		<div class="dev-url-block"><strong>URL запроса</strong>: &laquo;site-url&raquo;/api/training.all</div>
+		<p>
+			<strong>Параметры</strong>: Нет
+		</p>
+		<p>
+			Возвращает error_code 0 и массив trainings с информацией о каждом программе тренировки.
+			Или error_code > 0 в случае возникновения ошибки.
+		</p>
+	</div>
+	
+	<h6>Получение программы тренировки</h6>
+	<div>
+		<div class="dev-url-block"><strong>URL запроса</strong>: &laquo;site-url&raquo;/api/training.get</div>
+		<p>
+			<strong>Параметры</strong>: training_id &ndash; номер программы тренировки
+		</p>
+		<p>
+			Возвращает error_code 0 и кортеж training с информацией о программе тренировки.
+			Или error_code > 0 в случае возникновения ошибки.
+		</p>
+	</div>
+	
+	<h6>Редактирование программы тренировки</h6>
+	<div>
+		<div class="dev-url-block"><strong>URL запроса</strong>: &laquo;site-url&raquo;/api/training.edit</div>
+		<p>
+			<strong>Параметры</strong>: 
+			<ul>
+				<li>training_id &ndash; номер программы тренировки</li>
+				<li>name &ndash; имя программы тренировки</li>
+				<li>repeat &ndash; количество повторений программы тренировки (от 1 до 30)</li>
+				<li>role_min &ndash; минимальный ранг спортсмена</li>
+				<li>role_max &ndash; максимальный ранг спортсмена</li>
+			</ul>
+		</p>
+		<p>
+			Возвращает error_code 0.
+			Или error_code > 0 в случае возникновения ошибки.
+		</p>
+	</div>
+	
+	<h6>Скрытие программы тренировки</h6>
+	<div>
+		<div class="dev-url-block"><strong>URL запроса</strong>: &laquo;site-url&raquo;/api/training.hide</div>
+		<p>
+			<strong>Параметры</strong>: training_id &ndash; номер программы тренировки
+		</p>
+		<p>
+			Возвращает error_code 0.
+			Или error_code > 0 в случае возникновения ошибки.
+		</p>
+	</div>
+	
+	<h6>Восстановление программы тренировки</h6>
+	<div>
+		<div class="dev-url-block"><strong>URL запроса</strong>: &laquo;site-url&raquo;/api/training.show</div>
+		<p>
+			<strong>Параметры</strong>: training_id &ndash; номер программы тренировки
+		</p>
+		<p>
+			Возвращает error_code 0.
+			Или error_code > 0 в случае возникновения ошибки.
+		</p>
+	</div>
+	
+	<h6>Получение удара</h6>
+	<div>
+		<div class="dev-url-block"><strong>URL запроса</strong>: &laquo;site-url&raquo;/api/shot.get</div>
+		<p>
+			<strong>Параметры</strong>: shot_id &ndash; номер удара
+		</p>
+		<p>
+			Возвращает error_code 0 и кортеж shot с информацией об ударе.
+			Или error_code > 0 в случае возникновения ошибки.
+		</p>
+	</div>
+	
+	<h6>Редактирование программы тренировки</h6>
+	<div>
+		<div class="dev-url-block"><strong>URL запроса</strong>: &laquo;site-url&raquo;/api/shot.edit</div>
+		<p>
+			<strong>Параметры</strong>: 
+			<ul>
+				<li>shot_id &ndash; номер удара</li>
+				<li>name &ndash; имя удара</li>
+				<li>before_delay &ndash; задержка перед выстрелом, мс</li>
+				<li>ball_speed &ndash; скорость мяча, км/ч</li>
+				<li>ball_rotation &ndash; вращение мяча, м/с</li>
+				<li>rotation_type &ndash; тип вращения (1 &ndash; верхнее, -1 &ndash; нижнее)</li>
+				<li>leteral_rotation &ndash; тип бокового вращения (none, right, left)</li>
+				<li>shot_type &ndash; тип удара (attack-shot, over-net, over-table, under-table)</li>
+				<li>zone &ndash; зона выстрела мяча (от 0 до 11)</li>
+			</ul>
+		</p>
+		<p>
+			Возвращает error_code 0.
+			Или error_code > 0 в случае возникновения ошибки.
+		</p>
+	</div>
+	
+	<h6>Изменение позиции удара в программе тренировки</h6>
+	<div>
+		<div class="dev-url-block"><strong>URL запроса</strong>: &laquo;site-url&raquo;/api/shot.update_position</div>
+		<p>
+			<strong>Параметры</strong>:
+			<ul>
+				<li>shot_id &ndash; номер удара</li>
+				<li>sort_position &ndash; новая позиция</li>
+			</ul>
+		</p>
+		<p>
+			Возвращает error_code 0.
+			Или error_code > 0 в случае возникновения ошибки.
+		</p>
+	</div>
+	
+	<h6>Удалить удар из программы тренировки</h6>
+	<div>
+		<div class="dev-url-block"><strong>URL запроса</strong>: &laquo;site-url&raquo;/api/shot.delete</div>
+		<p>
+			<strong>Параметры</strong>: shot_id &ndash; номер удара
+		</p>
+		<p>
+			Возвращает error_code 0.
+			Или error_code > 0 в случае возникновения ошибки.
+		</p>
+	</div>
+	
+	<h6>Установить режим работы</h6>
+	<div>
+		<div class="dev-url-block"><strong>URL запроса</strong>: &laquo;site-url&raquo;/api/training.set_mode</div>
+		<p>
+			<strong>Параметры</strong>: power_mode &ndash; режим работы (0 &ndash; ручной режим; 1 &ndash; режим исполнения программы)
+		</p>
+		<p>
+			Возвращает error_code 0.
+			Или error_code > 0 в случае возникновения ошибки.
+		</p>
+	</div>
+	
+	<h6>Включить двигатель</h6>
+	<div>
+		<div class="dev-url-block"><strong>URL запроса</strong>: &laquo;site-url&raquo;/api/motor.enable</div>
+		<p>
+			<strong>Параметры</strong>: motor &ndash; номер двигателя (0 &ndash; все)
+		</p>
+		<p>
+			Возвращает error_code 0.
+			Или error_code > 0 в случае возникновения ошибки.
+		</p>
+	</div>
+	
+	<h6>Отключить двигатель</h6>
+	<div>
+		<div class="dev-url-block"><strong>URL запроса</strong>: &laquo;site-url&raquo;/api/motor.disable</div>
+		<p>
+			<strong>Параметры</strong>: motor &ndash; номер двигателя (0 &ndash; все)
+		</p>
+		<p>
+			Возвращает error_code 0.
+			Или error_code > 0 в случае возникновения ошибки.
+		</p>
+	</div>
+	
+	<h6>Установить высоту пушки</h6>
+	<div>
+		<div class="dev-url-block"><strong>URL запроса</strong>: &laquo;site-url&raquo;/api/lift.set</div>
+		<p>
+			<strong>Параметры</strong>: value &ndash; высота пушки, мм
+		</p>
+		<p>
+			Возвращает error_code 0.
+			Или error_code > 0 в случае возникновения ошибки.
+		</p>
+	</div>
+	
+	<h6>Повернуть пушку</h6>
+	<div>
+		<div class="dev-url-block"><strong>URL запроса</strong>: &laquo;site-url&raquo;/api/rotation.set</div>
+		<p>
+			<strong>Параметры</strong>: value &ndash; угол поворота, °
+		</p>
+		<p>
+			Возвращает error_code 0.
+			Или error_code > 0 в случае возникновения ошибки.
+		</p>
+	</div>
+	
+	<h6>Наклонить ствол</h6>
+	<div>
+		<div class="dev-url-block"><strong>URL запроса</strong>: &laquo;site-url&raquo;/api/incline.set</div>
+		<p>
+			<strong>Параметры</strong>: value &ndash; угол наклона, °
+		</p>
+		<p>
+			Возвращает error_code 0.
+			Или error_code > 0 в случае возникновения ошибки.
+		</p>
+	</div>
+	
+	<h6>Повернуть ствол</h6>
+	<div>
+		<div class="dev-url-block"><strong>URL запроса</strong>: &laquo;site-url&raquo;/api/rollrotation.set</div>
+		<p>
+			<strong>Параметры</strong>: value &ndash; угол поворота, °
+		</p>
+		<p>
+			Возвращает error_code 0.
+			Или error_code > 0 в случае возникновения ошибки.
+		</p>
+	</div>
+	
+	<h6>Установить скорость верхнего ролика</h6>
+	<div>
+		<div class="dev-url-block"><strong>URL запроса</strong>: &laquo;site-url&raquo;/api/toproll.speed</div>
+		<p>
+			<strong>Параметры</strong>: value &ndash; скорость, об/мин
+		</p>
+		<p>
+			Возвращает error_code 0.
+			Или error_code > 0 в случае возникновения ошибки.
+		</p>
+	</div>
+	
+	<h6>Установить скорость нижнего ролика</h6>
+	<div>
+		<div class="dev-url-block"><strong>URL запроса</strong>: &laquo;site-url&raquo;/api/bottomroll.speed</div>
+		<p>
+			<strong>Параметры</strong>: value &ndash; скорость, об/мин
+		</p>
+		<p>
+			Возвращает error_code 0.
+			Или error_code > 0 в случае возникновения ошибки.
+		</p>
+	</div>
+{% endblock %}

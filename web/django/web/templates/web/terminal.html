@@ -1,0 +1,47 @@
+{% extends 'web/base.html' %}
+
+{% block title %}Терминал USART{% endblock %}
+{% block header %}Терминал USART{% endblock %}
+
+{% block sidebar-menu %}
+	{{ block.super }}
+	<li><a class="sidebar-button__terminal" href="{% url 'web:terminal' %}">Терминал</a></li>
+{% endblock %}
+
+{% block footer %}
+	{{ block.super }}
+	
+	<script>
+		var tf = $('#terminal-form');
+		tf.ajaxForm();
+		tf.attr('action', tf.data('ajaxurl'));
+		
+		$(function(){
+			load_new_terminal_message();
+		});
+	</script>
+{% endblock %}
+
+{% block content %}
+	<div class="content-wrap-padding">
+		<form id="terminal-form" action="{% url 'web:terminal' %}" 
+			data-ajaxurl="{% url 'api:terminal-add' %}" method="POST">
+			{% csrf_token %}
+			{{ form.as_p }}
+			<p><button>Отправить</button></p>
+		</form>
+	</div>
+	
+	<div class="table-wrap">
+		<table>
+			<thead>
+				<tr>
+					<td>Время сообщение</td>
+					<td>Байт-код</td>
+					<td>Расшифровка</td>
+				</tr>
+			</thead>
+		</table>
+	</div>
+
+{% endblock %}

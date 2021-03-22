@@ -1,0 +1,31 @@
+.debug(@width: 1px; @type: solid; @color: red) {
+	border: @arguments;
+}
+
+.transition(@prop: all; @duration: 1s; @func: ease; @delay: 0.5s) {
+	-webkit-transition+: @arguments;
+	   -moz-transition+: @arguments;
+	     -o-transition+: @arguments;
+		    transition+: @arguments;
+}
+
+.box-shadow(@x: 0; @y: 0; @blur: 1px; @color: #000000) {
+	-webkit-box-shadow: @arguments;
+       -moz-box-shadow: @arguments;
+         -o-box-shadow: @arguments;
+            box-shadow: @arguments;
+}
+
+.image-button(@width, @height, @padding, @image) {
+	display: inline-block;
+	
+	width: @width;
+	height: @height;
+	
+	@side: min(@width, @height);
+	
+	background-image: url("../image/@{image}");
+	background-size: @side - @padding*2 @side - @padding*2;
+	background-repeat: no-repeat;
+	background-position: 50% 50%;
+}

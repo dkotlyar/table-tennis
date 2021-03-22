@@ -1,0 +1,10 @@
+docker build -t robot/django-web .
+
+docker-compose up db
+Ctrl+C
+
+docker-compose run web python manage.py migrate
+
+Восстановить базу из бэкапа или развернуть её средствами django
+
+

@@ -1,0 +1,58 @@
+{% extends "web/base.html" %}
+
+{% block title %}Авторизация{% endblock title %}
+{% block header %}Авторизация{% endblock %}
+
+{% block footer %}
+	<script>
+		$(function(){
+			$(window).resize(position_login_form);
+			// Тайм-аут используется для правильного позиционирования, т.к. 
+			// less.js не мгновенно рендерит стили страницы
+			setTimeout(position_login_form, 100);
+		});
+		
+		function position_login_form() {
+			var overpage = $('#overpage');
+			overpage.find('> div').position({
+				my: 'center center',
+				at: 'center center',
+				of: overpage
+			});
+		}
+	</script>
+{% endblock %}
+
+{% block bodyclass %}
+	{{ block.super }}
+	hard-hide-menu
+	hard-hide-header
+	show-overpage
+{% endblock %}
+
+{% block overpage %}
+
+	<div id="login-form">
+		{% if form.errors %}
+			<p class="error">Сожалеем, вы неправильно ввели логин или пароль</p>
+		{% endif %}
+
+		<form action='.' method='POST'>
+			{% csrf_token %}
+			<p>
+				<label for="username">Логин:</label>
+				<input type="text" name="username" value="" id="username">
+			</p>
+			<p>
+				<label for="password">Пароль:</label>
+				<input type="password" name="password" value="" id="password">
+			</p>
+			<p>
+				<button>Авторизоваться</button>
+			</p>
+			<input type="hidden" name="next" value="{{ next|escape }}" />
+			<a href="{% url 'accounts:registration' %}">Зарегистрироваться</a>
+		</form>
+	</div>
+
+{% endblock %}

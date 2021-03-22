@@ -1,0 +1,1 @@
+»конки лучше всего брать с сайта https://design.google.com/icons/

@@ -1,0 +1,12 @@
+{% extends "web/base.html" %}
+
+{% block title %}Ошибка{% endblock %}
+
+{% block content %}
+	<div class="content-wrap-padding">
+		<h1>Произошла ошибка</h1>
+		<p>
+			{{ errmsg }}
+		</p>
+	</div>
+{% endblock %}

@@ -1,0 +1,104 @@
+{% extends 'web/base.html' %}
+{% load staticfiles %}
+
+{% block title %}Удар: {{ shot.name }} - {{ block.super }}{% endblock %}
+{% block header %}
+	<a class="backpage" href="{% url 'web:training-edit' shot.training.id %}"></a>{{ shot.name }}
+{% endblock %}
+
+{% block footer %}
+	{{ block.super }}
+	<script>
+		var zone_input = $('#{{ form.zone.id_for_label }}');
+		$(function(){
+			var sf = $('#shot-form');
+			sf.ajaxForm();
+			sf.attr('action', sf.data('ajaxurl'));
+		});
+	</script>
+{% endblock %}
+
+{% block content %}	
+	<div class="content-wrap-padding shot-block">
+		<form id="shot-form" action="{% url 'web:shot-edit' shot.id %}" 
+			data-ajaxurl="{% url 'api:shot-edit' %}" method="POST">
+			<input type="hidden" name="shot_id" value="{{ shot.id }}" />
+			{% csrf_token %}
+			{{ form.non_field_errors }}
+			<p>
+				{{ form.name.errors }}
+				{{ form.name.label_tag }}
+				{{ form.name }}
+			</p>
+			
+			<p>
+				<label for="{{ form.ball_speed.id_for_label }}">{{ form.ball_speed.label }}: <strong>{{ form.ball_speed.value }}</strong> км/ч</label>
+				{{ form.ball_speed }}
+			</p>
+			<p>
+				<label for="{{ form.ball_rotation.id_for_label }}">{{ form.ball_rotation.label }}: <strong>{{ form.ball_rotation.value }}</strong> об/мин</label>
+				{{ form.ball_rotation }}
+			</p>
+			<div>
+				<div class="inline-block">
+					<p>
+						{{ form.rotation_type.label_tag }}
+						{{ form.rotation_type }}
+					</p>
+				</div>
+				<div class="inline-block">
+					<p>
+						{{ form.leteral_rotation.label_tag }}
+						{{ form.leteral_rotation }}
+					</p>
+				</div>
+			</div>
+			<p>
+				{{ form.shot_type.label_tag }}
+				{{ form.shot_type }}
+			</p>
+			<p>
+				<label for="{{ form.before_delay.id_for_label }}">{{ form.before_delay.label }}: <strong>{{ form.before_delay.value }}</strong> мс</label>
+				{{ form.before_delay }}
+			</p>
+			
+			<p>
+				{{ form.zone.label_tag }}
+				{{ form.zone }}
+			</p>
+			<div class="tennis-table-wrap">
+				<div class="tennis-table">
+					{% spaceless %}
+					<div class="tennis-table-layout">
+						<div></div>
+						<div></div>
+					</div>
+					<div class="tennis-table-net"></div>
+					<div class="tennis-zone-wrap">
+						<div class="tennis-table-row">
+							<div class="tennis-table-cell js-tennis-table-cell"></div>
+							<div class="tennis-table-cell js-tennis-table-cell"></div>
+							<div class="tennis-table-cell js-tennis-table-cell"></div>
+							<div class="tennis-table-cell js-tennis-table-cell"></div>
+						</div>
+						<div class="tennis-table-row">
+							<div class="tennis-table-cell js-tennis-table-cell"></div>
+							<div class="tennis-table-cell js-tennis-table-cell"></div>
+							<div class="tennis-table-cell js-tennis-table-cell"></div>
+							<div class="tennis-table-cell js-tennis-table-cell"></div>
+						</div>
+						<div class="tennis-table-row">
+							<div class="tennis-table-cell js-tennis-table-cell"></div>
+							<div class="tennis-table-cell js-tennis-table-cell"></div>
+							<div class="tennis-table-cell js-tennis-table-cell"></div>
+							<div class="tennis-table-cell js-tennis-table-cell"></div>
+						</div>
+					</div>
+					{% endspaceless %}
+				</div>
+			</div>
+
+			<button>Сохранить</button>
+		</form>
+	</div>
+{% endblock %}

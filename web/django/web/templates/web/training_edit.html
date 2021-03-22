@@ -1,0 +1,80 @@
+{% extends 'web/base.html' %}
+{% load staticfiles %}
+
+{% block title %}{{ training.name }}{% endblock %}
+{% block header %}{{ training.name }}{% endblock %}
+
+{% block footer %}
+	{{ block.super }}
+	<script type="text/javascript" src="{% static 'web/js/jquery.form.js' %}"></script>
+	<script type="text/javascript" src="{% static 'web/js/jquery.nice-select.js' %}"></script>
+	<script>
+		$(function(){
+			var tf = $('#training-form');
+			tf.ajaxForm();
+			tf.attr('action', tf.data('ajaxurl'));
+		});
+	</script>
+{% endblock %}
+
+{% block content %}	
+	<div class="content-wrap-padding training-block">
+		<form id="training-form" action="{% url 'web:training-edit' training.id %}" 
+			data-ajaxurl="{% url 'api:training-edit' %}" method="POST">
+			<input type="hidden" name="training_id" value="{{ training.id }}" />
+			{% csrf_token %}
+			{{ form.non_field_errors }}
+			<p>
+				{{ form.name.errors }}
+				{{ form.name.label_tag }}
+				{{ form.name }}
+			</p>
+			<p>
+				<label>Разряд спортсмена:</label>
+				{{ form.role_min }} &mdash; {{ form.role_max }}
+			</p>
+			
+			<label for="{{ form.repeat.id_for_label }}">{{ form.repeat.label }}: <strong>{{ form.repeat.value }}</strong></label>
+			{{ form.repeat }}
+			
+			<button>Сохранить</button>
+		</form>
+	</div>
+	
+	{% with training.shots as shots %}
+		{% if shots|length > 0 %}
+			<div class="content-wrap-padding menu-block">
+				<a class="menu-block-button menu-block-button__sort" href="javascript:toogle_list_sort();">Сортировать</a>
+				<a class="menu-block-button menu-block-button__delete" href="javascript:toogle_list_item_delete();">Удалить</a>
+			</div>
+			
+			<div class="training-shots">
+				{% for shot in shots %}
+					<div>
+						<input type="hidden" name="shot_id" value="{{ shot.pk }}" />
+						{% include 'web/shot_item.html' %}
+					</div>
+				{% endfor %}
+			</div>
+			
+			<p class="content-wrap-padding">
+				<a class="like-button" href="{% url 'web:training-start' training.pk %}">Запустить</a>
+			</p>
+			
+		{% else %}
+			<div class="empty-screen">
+				<div class="image-block" style="background-image: url('{% static 'web/image/empty_shot_screen.png' %}')"></div>
+				<p class="headline">Вы ещё не добавили ни одного удара в программу тренировки</p>
+				<p>Чтобы добавить удар, воспользуйтесь кнопкой "<strong>+</strong>" в углу экрана.</p>
+			</div>
+		{% endif %}
+	{% endwith %}
+	
+{% endblock %}
+
+{% block float-button %}
+	<div class="float-button">
+		{# <a href="{% url 'web:shots-add-or-clone' training.id %}" class="float-button-add"></a> #}
+		<a href="{% url 'web:shot-add' training.id %}" class="float-button-add"></a>
+	</div>
+{% endblock %}
